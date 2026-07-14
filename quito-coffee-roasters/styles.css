@@ -1,0 +1,419 @@
+/* ==========================================================================
+   VARIABLES CORPORATIVAS Y CONFIGURACIÓN BASE (Tema: Café Premium)
+   ========================================================================== */
+:root {
+    --primary: #2C1A11;       /* Café espresso muy oscuro */
+    --secondary: #4A3325;     /* Café tostado medio */
+    --accent: #B07D62;        /* Color avellana / crema tostada */
+    --accent-hover: #966348;  /* Tono avellana oscuro */
+    --bg-light: #F9F6F0;      /* Blanco lino / crema suave muy elegante */
+    --card-bg: #FFFFFF;       /* Fondo blanco puro para contraste */
+    --text-main: #33221A;     /* Color de texto principal legible */
+    --text-muted: #7A6961;    /* Texto secundario suavizado */
+    --shadow: 0 8px 24px rgba(44, 26, 17, 0.06);
+    --shadow-hover: 0 12px 32px rgba(44, 26, 17, 0.12);
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   HEADER Y NAVEGACIÓN (Diseño Limpio)
+   ========================================================================== */
+header {
+    background-color: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--bg-light);
+    text-transform: uppercase;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: #E6DCD3;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   HERO SECTION (Banner Principal Elegante)
+   ========================================================================== */
+#hero {
+    background: linear-gradient(rgba(27, 16, 10, 0.75), rgba(44, 26, 17, 0.85)), 
+                url('https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1500') no-repeat center center/cover;
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+#daily-quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #E6DCD3;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+#weather-widget {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   SECCIONES GENERALES Y FILTROS
+   ========================================================================== */
+section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+section h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+/* Barra de búsquedas centrada y moderna */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.filters input, .filters select {
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #D1C7BD;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.filters input:focus, .filters select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(176, 125, 98, 0.2);
+}
+
+.filters input { width: 300px; }
+
+/* ==========================================================================
+   CATÁLOGO DE PRODUCTOS (Grid Controlado y Proporcionado)
+   ========================================================================== */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.coffee-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Reseteamos para que la imagen toque los bordes arriba */
+}
+
+.coffee-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Contenedor estricto para que la imagen no se deforme */
+.card-img-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.coffee-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.coffee-card:hover .coffee-img {
+    transform: scale(1.06);
+}
+
+/* Textos dentro de las tarjetas */
+.coffee-card h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 1.5rem 0.5rem 1.5rem;
+    font-weight: 700;
+}
+
+.coffee-card .origin {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 1.5rem 0.8rem 1.5rem;
+}
+
+.coffee-card .notes {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    flex-grow: 1; /* Empuja el precio y botón hacia abajo equitativamente */
+}
+
+.coffee-card .price {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin: 0 1.5rem 1.2rem 1.5rem;
+}
+
+/* Botón estilizado */
+.add-btn {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: var(--accent);
+}
+
+/* ==========================================================================
+   CARRITO / CALCULADORA (Estructura Limpia en Dos Columnas)
+   ========================================================================== */
+.cart-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+@media (max-width: 768px) {
+    .cart-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .filters { flex-direction: column; align-items: center; }
+    .filters input { width: 100%; max-width: 300px; }
+}
+
+#cart-items {
+    border-right: 1px solid #EBE4DD;
+    padding-right: 2rem;
+}
+@media (max-width: 768px) { #cart-items { border-right: none; padding-right: 0; } }
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #F5EBE6;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.cart-summary label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.cart-summary select {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #D1C7BD;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.totals p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+.totals p strong {
+    font-size: 1.3rem;
+    color: var(--primary);
+}
+
+#convert-eur {
+    background-color: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s;
+}
+
+#convert-eur:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+#total-eur {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background-color: #FDFBF7;
+    border-left: 4px solid var(--accent);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   FORMULARIO DE CONTACTO CENTRADO
+   ========================================================================== */
+#contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #D1C7BD;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--accent);
+}
+
+.error-msg {
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    font-weight: 500;
+}
+
+#contact-form button[type="submit"] {
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#contact-form button[type="submit"]:hover {
+    background-color: var(--accent);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+    background-color: var(--primary);
+    color: #A39288;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 5rem;
+    font-size: 0.9rem;
+}

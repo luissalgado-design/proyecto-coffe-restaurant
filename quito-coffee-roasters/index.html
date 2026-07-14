@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quito Coffee Roasters | Tostadería Artesanal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header & Navegación -->
+    <header>
+        <nav aria-label="Navegación principal">
+            <div class="logo">Quito Coffee Roasters</div>
+            <ul>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#pedido">Calculadora</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección 1: Hero con APIs (Clima y Frase) -->
+        <section id="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <h1 id="hero-title">Quito Coffee Roasters</h1>
+                <p id="daily-quote">"Cargando frase del día..."</p>
+                <div id="weather-widget" aria-live="polite">
+                    <p>Clima en Quito: <span id="temp-value">--</span>°C</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Catálogo -->
+        <section id="catalogo">
+            <h2>Nuestros Cafés de Especialidad</h2>
+            <div class="filters">
+                <input type="text" id="search-input" placeholder="Buscar café...">
+                <select id="origin-filter">
+                    <option value="all">Todos los orígenes</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Brasil">Brasil</option>
+                    <option value="Etiopía">Etiopía</option>
+                </select>
+            </div>
+            <div id="catalog-container" class="grid-container">
+                <!-- Se renderiza dinámicamente con JS -->
+            </div>
+        </section>
+
+        <!-- Sección 3: Calculadora de Pedido -->
+        <section id="pedido">
+            <h2>Calculadora de Pedido</h2>
+            <div class="cart-wrapper">
+                <div id="cart-items">
+                    <p>Tu carrito está vacío.</p>
+                </div>
+                <div class="cart-summary">
+                    <label for="delivery-zone">Zona de entrega en Quito:</label>
+                    <select id="delivery-zone">
+                        <option value="0">Selecciona una zona</option>
+                        <option value="1.80">Centro ($1.80)</option>
+                        <option value="2.50">Norte ($2.50)</option>
+                        <option value="3.00">Sur ($3.00)</option>
+                        <option value="3.50">Valles ($3.50)</option>
+                    </select>
+
+                    <div class="totals">
+                        <p>Subtotal: $<span id="subtotal">0.00</span></p>
+                        <p>Envío: $<span id="shipping">0.00</span></p>
+                        <p><strong>Total: $<span id="total">0.00</span></strong></p>
+                        <button id="convert-eur">Ver en EUR (€)</button>
+                        <p id="total-eur" style="display:none;">Total en EUR: €<span>0.00</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Formulario de Contacto -->
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <form id="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" required>
+                    <span class="error-msg" id="name-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                    <span class="error-msg" id="email-error"></span>
+                </div>
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Quito Coffee Roasters. Desarrollado por [Tu Nombre].</p>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
