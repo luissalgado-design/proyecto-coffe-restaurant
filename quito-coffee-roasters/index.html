@@ -3,104 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quito Coffee Roasters | Tostadería Artesanal</title>
+    <title>Quito Coffee Roasters | Tostadería de Especialidad</title>
+    <!-- Favicon opcional -->
+    <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=100">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Header & Navegación -->
+    <!-- ==========================================================================
+       1. CABECERA (Navegación Semántica y Accesible)
+       ========================================================================== -->
     <header>
         <nav aria-label="Navegación principal">
             <div class="logo">Quito Coffee Roasters</div>
             <ul>
                 <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#pedido">Calculadora</a></li>
+                <li><a href="#calculadora">Calculadora</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- ==========================================================================
+       CONTENIDO PRINCIPAL
+       ========================================================================== -->
     <main>
-        <!-- Sección 1: Hero con APIs (Clima y Frase) -->
+        
+        <!-- ==========================================================================
+           2. HERO SECTION (Sección de Bienvenida con Widget Dinámico)[cite: 1]
+           ========================================================================== -->
         <section id="hero" aria-labelledby="hero-title">
             <div class="hero-content">
-                <h1 id="hero-title">Quito Coffee Roasters</h1>
-                <p id="daily-quote">"Cargando frase del día..."</p>
+                <h1 id="hero-title">Café de Especialidad</h1>
+                <p id="daily-quote">"El buen café une a las personas y despierta los sentidos."</p>
+                <!-- Widget del Clima con marcado semántico de tiempo -->
                 <div id="weather-widget" aria-live="polite">
-                    <p>Clima en Quito: <span id="temp-value">--</span>°C</p>
+                    <span>Clima en Quito: </span>
+                    <strong id="temp-value">Cargando...</strong>
                 </div>
             </div>
         </section>
 
-        <!-- Sección 2: Catálogo -->
-        <section id="catalogo">
-            <h2>Nuestros Cafés de Especialidad</h2>
-            <div class="filters">
-                <input type="text" id="search-input" placeholder="Buscar café...">
-                <select id="origin-filter">
+        <!-- ==========================================================================
+           3. CATÁLOGO DE CAFÉS (Estructura de Artículos de Producto)[cite: 1]
+           ========================================================================== -->
+        <section id="catalogo" aria-labelledby="catalogo-title">
+            <h2 id="catalogo-title">Nuestros Cafés de Especialidad</h2>
+            
+            <!-- Barra de Filtros Avanzada -->
+            <div class="filters" role="search" aria-label="Filtros de productos">
+                <input type="search" id="search-bar" placeholder="Buscar café..." aria-label="Buscar por nombre">
+                <select id="filter-origin" aria-label="Filtrar por origen de café">
                     <option value="all">Todos los orígenes</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Brasil">Brasil</option>
-                    <option value="Etiopía">Etiopía</option>
+                    <option value="Loja">Loja (Ecuador)</option>
+                    <option value="Imbabura">Imbabura (Ecuador)</option>
+                    <option value="Pichincha">Pichincha (Ecuador)</option>
+                    <option value="Importado">De Especialidad (Mundial)</option>
                 </select>
             </div>
-            <div id="catalog-container" class="grid-container">
-                <!-- Se renderiza dinámicamente con JS -->
+
+            <!-- Grid de Cafés (Estructura Semántica con data-attributes para JS)[cite: 1] -->
+            <div class="grid-container" id="products-grid">
+                
+                <!-- Café 1 -->
+                <article class="coffee-card" data-origin="Imbabura">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600" alt="Bolsa de Café Intag Selection" class="coffee-img" loading="lazy">
+                    </div>
+                    <h3>Intag Selection</h3>
+                    <span class="origin">Origen: Imbabura</span>
+                    <p class="notes">Perfil: Notas de chocolate amargo, cuerpo denso y sutiles toques cítricos.</p>
+                    <div class="price" data-raw-price="12.50">$12.50 USD</div>
+                    <button class="add-btn" aria-label="Agregar Intag Selection al pedido">Agregar al pedido</button>
+                </article>
+
+                <!-- Café 2 -->
+                <article class="coffee-card" data-origin="Importado">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=600" alt="Taza de Café Huila Premium de Colombia" class="coffee-img" loading="lazy">
+                    </div>
+                    <h3>Huila Premium</h3>
+                    <span class="origin">Origen: Colombia</span>
+                    <p class="notes">Perfil: Acidez brillante a frutos rojos, balanceado con dulce de caramelo.</p>
+                    <div class="price" data-raw-price="14.00">$14.00 USD</div>
+                    <button class="add-btn" aria-label="Agregar Huila Premium al pedido">Agregar al pedido</button>
+                </article>
+
+                <!-- Café 3 -->
+                <article class="coffee-card" data-origin="Importado">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=600" alt="Café Cerrado Dulce de Brasil" class="coffee-img" loading="lazy">
+                    </div>
+                    <h3>Cerrado Dulce</h3>
+                    <span class="origin">Origen: Brasil</span>
+                    <p class="notes">Perfil: Notas clásicas de nueces tostadas, cuerpo cremoso y acidez baja.</p>
+                    <div class="price" data-raw-price="11.50">$11.50 USD</div>
+                    <button class="add-btn" aria-label="Agregar Cerrado Dulce al pedido">Agregar al pedido</button>
+                </article>
+
+                <!-- Café 4 -->
+                <article class="coffee-card" data-origin="Importado">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600" alt="Taza de Café Yirgacheffe de Etiopía" class="coffee-img" loading="lazy">
+                    </div>
+                    <h3>Yirgacheffe</h3>
+                    <span class="origin">Origen: Etiopía</span>
+                    <p class="notes">Perfil: Fragancia intensamente floral, notas de jazmín, té negro y limón.</p>
+                    <div class="price" data-raw-price="16.50">$16.50 USD</div>
+                    <button class="add-btn" aria-label="Agregar Yirgacheffe al pedido">Agregar al pedido</button>
+                </article>
+
+                <!-- Café 5 -->
+                <article class="coffee-card" data-origin="Loja">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600" alt="Café Lojano Exclusivo" class="coffee-img" loading="lazy">
+                    </div>
+                    <h3>Lojano Exclusivo</h3>
+                    <span class="origin">Origen: Loja</span>
+                    <p class="notes">Perfil: Sabor sumamente limpio, notas frutales dulces, melocotón y azúcar de caña.</p>
+                    <div class="price" data-raw-price="15.00">$15.00 USD</div>
+                    <button class="add-btn" aria-label="Agregar Lojano Exclusivo al pedido">Agregar al pedido</button>
+                </article>
+
             </div>
         </section>
 
-        <!-- Sección 3: Calculadora de Pedido -->
-        <section id="pedido">
-            <h2>Calculadora de Pedido</h2>
+        <!-- ==========================================================================
+           4. CALCULADORA DE PEDIDOS & CARRITO (Estructura Interactiva)[cite: 1]
+           ========================================================================== -->
+        <section id="calculadora" aria-labelledby="calculadora-title">
+            <h2 id="calculadora-title">Calculadora de Pedido</h2>
+            
             <div class="cart-wrapper">
-                <div id="cart-items">
-                    <p>Tu carrito está vacío.</p>
-                </div>
-                <div class="cart-summary">
-                    <label for="delivery-zone">Zona de entrega en Quito:</label>
-                    <select id="delivery-zone">
-                        <option value="0">Selecciona una zona</option>
-                        <option value="1.80">Centro ($1.80)</option>
-                        <option value="2.50">Norte ($2.50)</option>
-                        <option value="3.00">Sur ($3.00)</option>
-                        <option value="3.50">Valles ($3.50)</option>
-                    </select>
-
-                    <div class="totals">
-                        <p>Subtotal: $<span id="subtotal">0.00</span></p>
-                        <p>Envío: $<span id="shipping">0.00</span></p>
-                        <p><strong>Total: $<span id="total">0.00</span></strong></p>
-                        <button id="convert-eur">Ver en EUR (€)</button>
-                        <p id="total-eur" style="display:none;">Total en EUR: €<span>0.00</span></p>
+                <!-- Columna de Artículos Seleccionados -->
+                <div id="cart-container">
+                    <h3>Tu carrito</h3>
+                    <div id="cart-items" role="region" aria-live="polite">
+                        <p class="empty-cart-msg">Tu carrito está vacío. Agrega cafés de especialidad arriba.</p>
                     </div>
                 </div>
+
+                <!-- Columna de Resumen matemático del pedido -->
+                <aside class="cart-summary" aria-label="Resumen de pago">
+                    <h3>Detalle del Pedido</h3>
+                    
+                    <!-- Selección de Zona de Envío -->
+                    <div class="summary-group">
+                        <label for="shipping-zone">Zona de entrega en Quito:</label>
+                        <select id="shipping-zone">
+                            <option value="0" data-cost="0">Selecciona una zona...</option>
+                            <option value="norte" data-cost="3.00">Norte de Quito (+$3.00)</option>
+                            <option value="centro" data-cost="2.00">Centro Histórico (+$2.00)</option>
+                            <option value="sur" data-cost="4.00">Sur de Quito (+$4.00)</option>
+                            <option value="valles" data-cost="5.00">Valles (Cumbayá / Tumbaco / Chillos) (+$5.00)</option>
+                        </select>
+                    </div>
+
+                    <!-- Totales (Enfocado en JavaScript) -->
+                    <div class="totals">
+                        <p>Subtotal: <span id="subtotal-val">$0.00 USD</span></p>
+                        <p>Envío: <span id="shipping-val">$0.00 USD</span></p>
+                        <hr style="margin: 1rem 0; border: none; border-top: 1px solid #EFECE6;">
+                        <p><strong>Total: <span id="total-val">$0.00 USD</span></strong></p>
+                    </div>
+
+                    <!-- Botón de conversión a Euros -->
+                    <button id="convert-eur" aria-label="Convertir total de dólares a euros">Convertir Total a EUR (€)</button>
+                    <div id="total-eur" style="display: none;"></div>
+                </aside>
             </div>
         </section>
 
-        <!-- Sección 4: Formulario de Contacto -->
-        <section id="contacto">
-            <h2>Contacto</h2>
+        <!-- ==========================================================================
+           5. FORMULARIO DE CONTACTO (Con validaciones semánticas nativas y mensajes)
+           ========================================================================== -->
+        <section id="contacto" aria-labelledby="contacto-title">
+            <h2 id="contacto-title">Contacto</h2>
+            
             <form id="contact-form" novalidate>
                 <div class="form-group">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" required>
-                    <span class="error-msg" id="name-error"></span>
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" required minlength="3" placeholder="Ej: Luis Salgado">
+                    <span class="error-msg" id="error-nombre" role="alert"></span>
                 </div>
+                
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" required>
-                    <span class="error-msg" id="email-error"></span>
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
+                    <span class="error-msg" id="error-email" role="alert"></span>
                 </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono de contacto:</label>
+                    <input type="tel" id="telefono" name="telefono" required pattern="^[0-9]{9,10}$" placeholder="Ej: 0991234567">
+                    <span class="error-msg" id="error-telefono" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje o Sugerencia:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" required minlength="10" placeholder="Escribe tu consulta aquí..."></textarea>
+                    <span class="error-msg" id="error-mensaje" role="alert"></span>
+                </div>
+
                 <button type="submit">Enviar Mensaje</button>
+                <div id="form-success" class="success-msg" role="status"></div>
             </form>
         </section>
+
     </main>
 
+    <!-- ==========================================================================
+       6. FOOTER INFORMATIVO Y CRÉDITOS[cite: 1]
+       ========================================================================== -->
     <footer>
-        <p>&copy; 2026 Quito Coffee Roasters. Desarrollado por [Tu Nombre].</p>
+        <div class="footer-container">
+            <section class="footer-section" aria-labelledby="footer-contact">
+                <h3 id="footer-contact">Contacto</h3>
+                <p>📍 Av. Amazonas y Patria, Quito, Ecuador</p>
+                <p>📞 +593 99 123 4567</p>
+                <p>✉️ info@quitocoffee.com</p>
+            </section>
+            
+            <section class="footer-section" aria-labelledby="footer-hours">
+                <h3 id="footer-hours">Horarios de Atención</h3>
+                <p>Lunes a Viernes: 07:00 - 19:00</p>
+                <p>Sábados y Domingos: 08:00 - 17:00</p>
+            </section>
+            
+            <section class="footer-section" aria-labelledby="footer-social">
+                <h3 id="footer-social">Síguenos</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+                </div>
+            </section>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 QUITO COFFEE ROASTERS. DESARROLLADO POR Salgado Peñafiel Luis Ferando  .</p>
+        </div>
     </footer>
 
-    <script type="module" src="js/main.js"></script>
+    <!-- Scripts Javascript -->
+    <script src="js/script.js"></script>
 </body>
 </html>
